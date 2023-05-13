@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
-<note>
-  <to>Tove</to>
-  <from>Jani</from>
-  <heading>Reminder</heading>
-  <body>Don't forget me this weekend!</body>
-</note>
+<h:note xmlns:h="http://www.w3.org/TR/html4/">
+  <h:to>Tove</h:to>
+  <h:from>Jani</h:from>
+  <h:heading>Reminder</h:heading>
+  <h:body>Don't forget me this weekend!</h:body>
+</h:note>

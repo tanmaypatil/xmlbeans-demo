@@ -13,6 +13,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.namespace.QName;
+
 import org.apache.xmlbeans.SchemaTypeLoader;
 import org.apache.xmlbeans.XmlBeans;
 import org.apache.xmlbeans.XmlCursor;
@@ -95,6 +97,17 @@ class AppTest {
            if ( o != null) {
             System.out.println("XmlObject is not null");
            }
+    
+           XmlObject xa = o.selectAttribute(new QName("http://www.w3.org/TR/html4/",   "h"));
+           if ( xa == null) {
+            final XmlCursor xmlcur = o.newCursor();
+            xmlcur.toStartDoc();
+            xmlcur.toFirstChild();
+            xa = xmlcur.getObject();
+            xa = o.selectAttribute(new QName("http://www.w3.org/TR/html4/",   "h"));
+           }
+           String uri = xa.schemaType().getName().getNamespaceURI();
+           System.out.println("uri is "+uri);
 
         } catch (Exception e) {
             System.out.println("exception in shiporder xsd parsing"+e);
