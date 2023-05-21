@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" xmlns:sa="https://www.w3schools.com/security" ?>
+<?xml version="1.0" encoding="UTF-8"  ?>
 <xs:schema xmlns:so="https://www.w3schools.com/furniture" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
 <xs:element name="shiporder">
