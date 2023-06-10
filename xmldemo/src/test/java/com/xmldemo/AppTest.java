@@ -3,7 +3,7 @@ package com.xmldemo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import org.apache.commons.lang3.StringUtils;
 import org.apache.xmlbeans.SchemaTypeLoader;
 import org.apache.xmlbeans.XmlObject;
 
@@ -42,5 +42,60 @@ class AppTest {
         XmlObject xo = x.parseXml("note.xml",noteXml);
         Assertions.assertNotNull(xo);
     }
+
+
+    @Test
+    void getSecondOcurrence() {
+        String str = "<we are looking for second occurence of brace< new";
+        System.out.println("lelngth "+str.length());
+        int len = str.indexOf("<", 0);
+        System.out.println("len is "+len);
+        int len1 = str.indexOf("<", len + 1);
+        System.out.println("len1 is "+len);
+        String rem =  str.substring( len1+1,str.length());
+        System.out.println( "rem is "+rem);
+    }
+
+    @Test
+    void getSecondOcurrence1DoesNotwork() {
+        String str = "<we are looking for second occurence of brace< new";
+        System.out.println("lelngth "+str.length());
+        int len = str.indexOf("<", 0);
+        System.out.println("len is "+len);
+        int len1 = str.indexOf("<", len);
+        System.out.println("len1 is "+len);
+        String rem =  str.substring( len1+1,str.length());
+        System.out.println( "rem is "+rem);
+    }
+
+    @Test
+    void getSecondOcurrence2Doeswork() {
+        String str = "<we are looking for second occurence of brace< new";
+        String rem = str.substring ( str.indexOf("<",str.indexOf("<",0)+1) +1 ,str.length());
+        System.out.println( "rem is :"+rem);
+    }
+
+@Test  
+    void createXml() {
+      XmlObject rootDoc = null;
+      String sXmlDocumentTemplateString = "<%s xmlns=\"%s\"/>";
+      String sRootNodeName="Document";
+      String nameSpace = "http://www.w3.org/2001/XMLSchema";
+      String out = String.format(sXmlDocumentTemplateString, sRootNodeName,nameSpace);
+      System.out.println(" out is "+out);
+      XmlUtils x = new XmlUtils();
+      x.setBasePath("C:\\Users\\u725561\\xmlbeans-demo\\xmldemo\\src\\test\\java\\com\\xmldemo");
+      SchemaTypeLoader s = x.readSchema("note.xsd");
+      try {
+      rootDoc = s.parse(out, null, null);
+      }
+      catch(Exception e) {
+        System.out.println("exception in parsing namespace");
+      }
+      Assertions.assertNotNull(rootDoc);
+      System.out.println("rootDoc "+rootDoc.toString());
+
+    }
+
 
 }
