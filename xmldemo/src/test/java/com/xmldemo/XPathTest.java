@@ -37,6 +37,18 @@ public class XPathTest {
         //Assertions.assertEquals("Guava", s);
         System.out.println("fetched title " + s.size());
         Assertions.assertEquals(expected, s);
+    }
+
+    @Test
+    @DisplayName("use xpath to fetch node with string source")
+    public void fetchXPathusingStr() throws ParserConfigurationException, XPathExpressionException, SAXException, IOException {
+        String xml =" <todo>" +
+        "<date>2023-09-08</date>" +
+        "<description> study java xml api</description>" +
+        "</todo>";
+         NativeXmlUtils n = new NativeXmlUtils();
+         String date = n.getDocumentFromStr(xml).getValueOfTag("/todo/date");
+         System.out.println(date);
 
     }
 

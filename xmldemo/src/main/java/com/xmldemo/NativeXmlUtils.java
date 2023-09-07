@@ -1,6 +1,7 @@
 package com.xmldemo;
 
 import org.w3c.dom.*;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.*;
@@ -30,6 +31,11 @@ public class NativeXmlUtils {
 
     public NativeXmlUtils getDocument(String name) throws SAXException, IOException {
         this.document = builder.parse(new File(name));
+        return this;
+    }
+
+     public NativeXmlUtils getDocumentFromStr(String xmlDoc) throws SAXException, IOException {
+        this.document = builder.parse(new InputSource( new StringReader( xmlDoc ) ));
         return this;
     }
 
