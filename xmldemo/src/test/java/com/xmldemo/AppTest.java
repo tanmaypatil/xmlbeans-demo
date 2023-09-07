@@ -4,10 +4,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.IOException;
+
 import javax.xml.namespace.QName;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.xmlbeans.QNameCache;
@@ -149,7 +154,7 @@ class AppTest {
     void createXml2() {
         XmlObject rootDoc = null;
         String sXmlDocumentTemplateString = "<%s xmlns=\"%s\"/>";
-        String sRootNodeName = "Document";
+        String sRootNodeName = "note";
         String nameSpace = "urn:mynotes";  
         String out = String.format(sXmlDocumentTemplateString, sRootNodeName, nameSpace);
         System.out.println(" out is " + out);
@@ -171,9 +176,11 @@ class AppTest {
         if (actualRoot != null) {
             elementTypeStore = (TypeStore) actualRoot.get_store();
         }
+        System.out.println(" typestore "+elementTypeStore.count_elements(new QName(nameSpace)));
         Assertions.assertNotNull(elementTypeStore);
         System.out.println(" actualRoot , schema "+actualRoot.schemaType().getName());
-        String sChildNodeName = "note";
+         System.out.println(" rootDoc , schema "+rootDoc.schemaType().getName());
+        String sChildNodeName = "to";
         QName qnmCurrentElementName = new QName(nameSpace, sChildNodeName);
         XmlObjectBase currentPathElement = (XmlObjectBase) elementTypeStore.find_attribute_user(qnmCurrentElementName);
         if (currentPathElement == null) {
@@ -182,8 +189,16 @@ class AppTest {
         Assertions.assertNotNull(currentPathElement);
         System.out.println(" note ,schema "+currentPathElement.schemaType().getName());
        
-    
   
+    }
+
+    @Test
+    @DisplayName("use xpath to fetch xml")
+    public void fetchXml() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+        NativeXmlUtils n = new NativeXmlUtils();
+        String s = n.getDocument("C:\\Users\\u725561\\xmlbeans-demo\\xmldemo\\src\\test\\java\\com\\xmldemo\\Tutorials.xml").getValueOfTag("/Tutorials/Tutorial/title");
+        System.out.println("fetched title "+s);
+
     }
 
 }

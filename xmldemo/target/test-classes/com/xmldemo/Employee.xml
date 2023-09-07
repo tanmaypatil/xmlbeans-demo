@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<employees xmlns:h="http://www.w3.org/TR/html4/"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <h:employee id="111">
+        <h:firstName>Lokesh</h:firstName>
+        <h:lastName>Gupta</h:lastName>
+        <h:location>India</h:location>
+    </h:employee>
+    <h:employee id="222">
+        <h:firstName>Alex</h:firstName>
+        <h:lastName>Gussin</h:lastName>
+        <h:location>Russia</h:location>
+    </h:employee>
+    <h:employee id="333">
+        <h:firstName>David</h:firstName>
+        <h:lastName>Feezor</h:lastName>
+        <h:location>USA</h:location>
+    </h:employee>
+</employees>
