@@ -65,4 +65,30 @@ public class XPathTest {
 
     }
 
+       @Test
+    @DisplayName("use xpath to fetch first node content from xml with namespace no prefix")
+    public void fetchXmlNodeWithNs2() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+        NativeXmlUtils n = new NativeXmlUtils();
+        List<String> s = n
+                .getDocument("C:\\Users\\u725561\\xmlbeans-demo\\xmldemo\\src\\test\\java\\com\\xmldemo\\Product.xml")
+                .getMultiValueOfTag("//products/product/name");
+        //Assertions.assertEquals("Guava", s);
+        System.out.println("fetched product names " + s);
+
+    }
+
+    
+       @Test
+    @DisplayName("use xpath to fetch first node content from xml with namespace for pacs.002")
+    public void fetchXmlNodepacs_002() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+        NativeXmlUtils n = new NativeXmlUtils();
+        List<String> s = n
+                .getDocument("C:\\Users\\u725561\\xmlbeans-demo\\xmldemo\\src\\test\\java\\com\\xmldemo\\pacs_002.xml")
+                .getMultiValueOfTag("//ps:FIToFIPmtStsRpt/ps:GrpHdr/ps:MsgId");
+        //Assertions.assertEquals("Guava", s);
+        System.out.println("fetched Msg id " + s);
+
+    }
+
+
 }

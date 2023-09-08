@@ -22,7 +22,6 @@ public class NameSpaceResolver implements NamespaceContext {
         } else {
             ns = sourceDocument.lookupNamespaceURI(prefix);
             System.out.println("namespace is "+ns);
-            if ( ns == null ) ns = "http://www.w3.org/TR/html4/";
             return ns ;
         }
     }

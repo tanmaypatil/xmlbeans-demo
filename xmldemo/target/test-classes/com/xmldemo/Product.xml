@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<products xmlns:p="http://www.e-commerce.com/products"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <product id="111">
+        <name>toothpaste</name>
+        <price>10</price>
+    </product>
+    <product id="112">
+        <name>chocolate</name>
+        <price>20</price>
+    </product>
+</products>
