@@ -21,7 +21,9 @@ public class NativeXmlUtils {
     public NativeXmlUtils() throws ParserConfigurationException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
+            factory.setNamespaceAware(true);
             builder = factory.newDocumentBuilder();
+       
         } catch (ParserConfigurationException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -42,6 +44,7 @@ public class NativeXmlUtils {
     // reads the first node.
     public String getValueOfTag(String xpath) throws XPathExpressionException {
         XPath xPath = XPathFactory.newInstance().newXPath();
+        xPath.setNamespaceContext(new NameSpaceResolver(this.document));
         NodeList nodeList = (NodeList) xPath.compile(xpath).evaluate(this.document, XPathConstants.NODESET);
         int i = nodeList.getLength();
         Node n = nodeList.item(0);
@@ -53,6 +56,7 @@ public class NativeXmlUtils {
     public List<String> getMultiValueOfTag(String xpath) throws XPathExpressionException {
         ArrayList<String> list = new ArrayList<String>();
         XPath xPath = XPathFactory.newInstance().newXPath();
+        xPath.setNamespaceContext(new NameSpaceResolver(this.document));
         NodeList nodeList = (NodeList) xPath.compile(xpath).evaluate(this.document, XPathConstants.NODESET);
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node n = nodeList.item(i);

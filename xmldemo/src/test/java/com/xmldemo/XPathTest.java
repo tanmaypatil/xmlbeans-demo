@@ -26,7 +26,7 @@ public class XPathTest {
 
     }
 
-     @Test
+    @Test
     @DisplayName("use xpath to fetch xml all nodes")
     public void fetchMultiXmlNodes() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {
         NativeXmlUtils n = new NativeXmlUtils();
@@ -49,6 +49,19 @@ public class XPathTest {
          NativeXmlUtils n = new NativeXmlUtils();
          String date = n.getDocumentFromStr(xml).getValueOfTag("/todo/date");
          System.out.println(date);
+
+    }
+
+    
+    @Test
+    @DisplayName("use xpath to fetch first node content from xml with namespace")
+    public void fetchXmlNodeWithNs() throws XPathExpressionException, SAXException, IOException, ParserConfigurationException {
+        NativeXmlUtils n = new NativeXmlUtils();
+        List<String> s = n
+                .getDocument("C:\\Users\\u725561\\xmlbeans-demo\\xmldemo\\src\\test\\java\\com\\xmldemo\\Employee.xml")
+                .getMultiValueOfTag("//h:employees/h:employee/h:firstName");
+        //Assertions.assertEquals("Guava", s);
+        System.out.println("fetched firstnames " + s);
 
     }
 
